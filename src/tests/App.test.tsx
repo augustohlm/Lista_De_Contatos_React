@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
 
-import App from './App'
-import contatosReducer from './store/contatosSlice'
+import App from '../App'
+import contatosReducer from '../store/contatosSlice'
 
 test('exibe o título e a quantidade de contatos do Redux', () => {
   const storeDeTeste = configureStore({
@@ -26,7 +27,12 @@ test('exibe o título e a quantidade de contatos do Redux', () => {
 
   render(
     <Provider store={storeDeTeste}>
-      <App />
+      <MemoryRouter
+        initialEntries={['/']}
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
+        <App />
+      </MemoryRouter>
     </Provider>
   )
 
@@ -52,7 +58,12 @@ test('informa quando a lista de contatos está vazia', () => {
 
   render(
     <Provider store={storeDeTeste}>
-      <App />
+      <MemoryRouter
+        initialEntries={['/']}
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
+        <App />
+      </MemoryRouter>
     </Provider>
   )
 

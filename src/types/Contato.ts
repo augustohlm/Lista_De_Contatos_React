@@ -4,3 +4,5 @@ export type Contato = {
   email: string
   telefone: string
 }
+
+export type DadosContato = Omit<Contato, 'id'>

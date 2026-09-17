@@ -1,14 +1,30 @@
 import CardContato from '../../components/CardContato'
 import { useAppSelector } from '../../store/hooks'
-import { Secao, Contador, MensagemVazia, Lista } from './styles'
+import {
+  Secao,
+  Contador,
+  MensagemVazia,
+  Lista,
+  Cabecalho,
+  BotaoAdicionar
+} from './styles'
 
-function ListaContatos() {
+type Props = {
+  onAdicionar: () => void
+}
+
+function ListaContatos({ onAdicionar }: Props) {
   const contatos = useAppSelector((state) => state.contatos.itens)
   const totalContatos = contatos.length
 
   return (
     <Secao aria-label="Contatos cadastrados">
-      <Contador>Contatos cadastrados: {totalContatos}</Contador>
+      <Cabecalho>
+        <Contador>Contatos cadastrados: {totalContatos}</Contador>
+        <BotaoAdicionar type="button" onClick={onAdicionar}>
+          Adicionar contato
+        </BotaoAdicionar>
+      </Cabecalho>
       {totalContatos === 0 ? (
         <MensagemVazia>Nenhum contato cadastrado.</MensagemVazia>
       ) : (

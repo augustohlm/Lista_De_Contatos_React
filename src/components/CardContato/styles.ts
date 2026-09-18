@@ -20,3 +20,22 @@ export const Informacao = styled.p`
     margin-top: 4px;
   }
 `
+export const BotaoRemover = styled.button`
+  margin-top: 16px;
+  padding: 8px 12px;
+  boder: 1px solid #b91c1c;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #b91c1c;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fee2e2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #b91c1c;
+    outline-offset: 3px;
+  }
+`

@@ -25,9 +25,14 @@ const contatosSlice = createSlice({
           }
         }
       }
+    },
+    remover(state, action: PayloadAction<string>) {
+      state.itens = state.itens.filter(
+        (contato) => contato.id !== action.payload
+      )
     }
   }
 })
 
-export const { adicionar } = contatosSlice.actions
+export const { adicionar, remover } = contatosSlice.actions
 export default contatosSlice.reducer

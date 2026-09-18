@@ -1,5 +1,6 @@
 import CardContato from '../../components/CardContato'
-import { useAppSelector } from '../../store/hooks'
+import { remover } from '../../store/contatosSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import {
   Secao,
   Contador,
@@ -14,6 +15,7 @@ type Props = {
 }
 
 function ListaContatos({ onAdicionar }: Props) {
+  const dispatch = useAppDispatch()
   const contatos = useAppSelector((state) => state.contatos.itens)
   const totalContatos = contatos.length
 
@@ -30,7 +32,11 @@ function ListaContatos({ onAdicionar }: Props) {
       ) : (
         <Lista aria-label="Lista de contatos">
           {contatos.map((contato) => (
-            <CardContato key={contato.id} contato={contato} />
+            <CardContato
+              key={contato.id}
+              contato={contato}
+              onRemover={() => dispatch(remover(contato.id))}
+            />
           ))}
         </Lista>
       )}

@@ -23,7 +23,7 @@ export const Informacao = styled.p`
 export const BotaoRemover = styled.button`
   margin-top: 16px;
   padding: 8px 12px;
-  boder: 1px solid #b91c1c;
+  border: 1px solid #b91c1c;
   border-radius: 6px;
   background-color: #ffffff;
   color: #b91c1c;
@@ -37,5 +37,18 @@ export const BotaoRemover = styled.button`
   &:focus-visible {
     outline: 2px solid #b91c1c;
     outline-offset: 3px;
+  }
+`
+export const BotaoEditar = styled(BotaoRemover)`
+  margin-right: 8px;
+  border-color: #2563eb;
+  color: #2563eb;
+
+  &:hover {
+    background-color: #eff6ff;
+  }
+
+  &:focus-visible {
+    outline-color: #2563eb;
   }
 `

@@ -13,15 +13,20 @@ import {
 } from './styles'
 
 type Props = {
+  dadosIniciais?: DadosContato
   onSalvar: (dados: DadosContato) => void
   onCancelar: () => void
 }
 
-function FormularioContato({ onSalvar, onCancelar }: Props) {
-  const [nomeCompleto, setNomeCompleto] = useState('')
-  const [email, setEmail] = useState('')
-  const [telefone, setTelefone] = useState('')
+function FormularioContato({ dadosIniciais, onSalvar, onCancelar }: Props) {
+  const [nomeCompleto, setNomeCompleto] = useState(
+    dadosIniciais?.nomeCompleto ?? ''
+  )
+  const [email, setEmail] = useState(dadosIniciais?.email ?? '')
+  const [telefone, setTelefone] = useState(dadosIniciais?.telefone ?? '')
   const [erro, setErro] = useState('')
+
+  const emEdicao = Boolean(dadosIniciais)
 
   function enviarFormulario(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault()
@@ -40,8 +45,11 @@ function FormularioContato({ onSalvar, onCancelar }: Props) {
   }
 
   return (
-    <Formulario onSubmit={enviarFormulario} aria-label="Cadastro de contato">
-      <h2>Novo contato</h2>
+    <Formulario
+      onSubmit={enviarFormulario}
+      aria-label={emEdicao ? 'Edição de contato' : 'Cadastro de contato'}
+    >
+      <h2>{emEdicao ? 'Editar contato' : 'Novo contato'}</h2>
       <Grupo>
         Nome completo
         <Campo
@@ -78,7 +86,9 @@ function FormularioContato({ onSalvar, onCancelar }: Props) {
       {erro && <MensagemErro role="alert">{erro}</MensagemErro>}
 
       <Acoes>
-        <Botao type="submit">Salvar contato</Botao>
+        <Botao type="submit">
+          {emEdicao ? 'Salvar alterações' : 'Salvar contato'}
+        </Botao>
         <BotaoCancelar type="button" onClick={onCancelar}>
           Cancelar
         </BotaoCancelar>

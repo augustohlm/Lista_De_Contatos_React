@@ -12,9 +12,10 @@ import {
 
 type Props = {
   onAdicionar: () => void
+  onEditar: (id: string) => void
 }
 
-function ListaContatos({ onAdicionar }: Props) {
+function ListaContatos({ onAdicionar, onEditar }: Props) {
   const dispatch = useAppDispatch()
   const contatos = useAppSelector((state) => state.contatos.itens)
   const totalContatos = contatos.length
@@ -36,6 +37,7 @@ function ListaContatos({ onAdicionar }: Props) {
               key={contato.id}
               contato={contato}
               onRemover={() => dispatch(remover(contato.id))}
+              onEditar={() => onEditar(contato.id)}
             />
           ))}
         </Lista>

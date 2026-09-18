@@ -1,5 +1,6 @@
 import { Container, Titulo, Descricao } from './App.styles'
 import CadastroContato from './containers/CadastroContato'
+import EdicaoContato from './containers/EdicaoContato'
 import ListaContatos from './containers/ListaContatos'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 
@@ -13,13 +14,22 @@ function App() {
         <Route
           path="/"
           element={
-            <ListaContatos onAdicionar={() => navigate('/AdicionarContato')} />
+            <ListaContatos
+              onAdicionar={() => navigate('/AdicionarContato')}
+              onEditar={(id) => navigate(`/EditarContato/${id}`)}
+            />
           }
         />
         <Route
           path="AdicionarContato"
           element={<CadastroContato onVoltar={() => navigate('/')} />}
         />
+
+        <Route
+          path="/EditarContato/:id"
+          element={<EdicaoContato onVoltar={() => navigate('/')} />}
+        />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Container>
